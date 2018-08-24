@@ -1210,22 +1210,22 @@ Usage: $progname [options] <filepath> <filepath>
 A program to determine differences between two SCARF files. 
 
 options:
-    --help                       -h print this message
-    --version                    -v print version
-    --all                        -a enable all comparisons
-    --full_bug			 -fb enable all bugs comparisons
-    --bug_code                   -c enable/disable bug_code comparison
-    --bug_group                  -g enable/disable bug_group comparison
-    --source_file                -f enable/disable source_file comparison
-    --start_line                 -sl enable/disable start_line comparison
-    --end_line                   -el enable/disable end_line comparison
-    --start_column               -sc enable/disable start_column comparison
-    --end_column                 -ec enable/disable end_column comparison
-    --methods                    -m enable/disable  comparison
-    --cweid                      -cwe enable/disable bug_code comparison
-    --metric			 -metr enable/disable metric diff functionality	
-    --summary                    -s enable/disable only reading summary for diff information
-    --json			 -j enable JSON parsing instead of XML
+    --help               -h    print this message
+    --version            -v    print version
+    --all                -a    enable all comparisons
+    --full_bug           -fb   enable all bugs comparisons
+    --bug_code           -c    enable/disable bug_code comparison
+    --bug_group          -g    enable/disable bug_group comparison
+    --source_file        -f    enable/disable source_file comparison
+    --start_line         -sl   enable/disable start_line comparison
+    --end_line           -el   enable/disable end_line comparison
+    --start_column       -sc   enable/disable start_column comparison
+    --end_column         -ec   enable/disable end_column comparison
+    --methods            -m    enable/disable  comparison
+    --cweid              -cwe  enable/disable bug_code comparison
+    --metric                   enable/disable metric diff functionality	
+    --summary            -s    enable/disable only reading summary for diff information
+    --json               -j    enable JSON parsing instead of XML
 EOF
 #    --bug_message                -bm enable/disable bug_code comparison
 #    --only_primary               -p enable/disable bug_code comparison
@@ -1252,25 +1252,25 @@ sub PrintVersion
 sub ProcessOptions
 {
     my %optionDefaults = (
-                help            => 0,
-                version         => 0,
-                all         => 0,
-                bug_code         => 1,
-                bug_group         => 1,
-                source_file         => 1,
-                start_line         => 1,
-                end_line         => 0,
-                start_column         => 0,
-                end_column         => 0,
-                methods         => 0,
-                cwe         => 0,
-#                bug_message         => 0,
-                only_primary         => 1,
-		summary         => 0,
-		metric          => 0,
-		verbosity      => 0,
-		json           => 0,
-		full_bug      => 0
+		help		=> 0,
+		version		=> 0,
+		all		=> 0,
+		bug_code	=> 1,
+		bug_group	=> 1,
+		source_file	=> 1,
+		start_line	=> 1,
+		end_line	=> 0,
+		start_column	=> 0,
+		end_column	=> 0,
+		methods		=> 0,
+		cwe		=> 0,
+#                bug_message	=> 0,
+		only_primary	=> 1,
+		summary		=> 0,
+		metric		=> 0,
+		verbosity	=> 0,
+		json		=> 0,
+		full_bug	=> 0
                 );
 
     # for options that contain a '-', make the first value be the
@@ -1293,7 +1293,7 @@ sub ProcessOptions
 #		"bug_message|bug-message|bugmessage|message|bm!",
 		"only_primary|onlyprimary|primary|p!",
 		"summary|Summary|sum|s!",
-		"metric|metrics|metr!",
+		"metric|metrics!",
 		"json|JSON|j!",
 		"full_bug|full-bug|full|bug|fb"
                 );
