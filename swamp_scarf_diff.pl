@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-######################################imports#######################################
+###################################### imports #######################################
 use Getopt::Long;
 use ScarfXmlReader;
 #use ScarfJSONReader;
@@ -10,8 +10,7 @@ use strict;
 
 
 
-
-##################################DIFF finder########################################
+################################## DIFF finder ########################################
 sub diffMetric
 {
     my ($root, $cmp, $data) = @_;
@@ -58,7 +57,6 @@ sub diffMetric
 	}
     }
 }
-
 
 
 
@@ -542,7 +540,7 @@ sub diff
 
 
 
-###############################Metric Callbacks
+############################### Metric Callbacks
 sub rootMetric
 {
     my ($metric, $dataHash) = @_;
@@ -576,6 +574,8 @@ sub rootMetric
     push @{$$dataHash->{rootMetrics}->{$type}->{$source}->{$class}->{$method}->{$value}}, $metric->{MetricId};
     return;
 }
+
+
 
 sub cmpMetric
 {
@@ -611,7 +611,9 @@ sub cmpMetric
     return;
 }
 
-###############################Bug Callback for root file (arg1) #############################################################################
+
+
+############################### Bug Callback for root file (arg1) #############################################################################
 sub rootBug
 {
     my ($bugHash, $dataHash) = @_;
@@ -849,7 +851,9 @@ sub rootBug
     return;
 }
 
-###############################Bug Callback for cmp file (arg2) #############################################################################
+
+
+############################### Bug Callback for cmp file (arg2) #############################################################################
 sub cmpBug
 {
     my ($bugHash, $dataHash) = @_;
@@ -1090,6 +1094,7 @@ sub cmpBug
 }
 
 
+
 sub rootBugSum
 {
     my ($bugSum, $data) = @_;
@@ -1098,12 +1103,16 @@ sub rootBugSum
 }
 
 
+
 sub cmpBugSum
 {
     my ($bugSum, $data) = @_;
     $$data->{cmpBugSum} = dclone $bugSum;
     return;
 }
+
+
+
 sub rootMetricSum
 {
     my ($summary, $data) = @_;
@@ -1144,6 +1153,7 @@ sub rootMetricSum
     }
     return;
 }
+
 
 
 sub cmpMetricSum
@@ -1190,7 +1200,7 @@ sub cmpMetricSum
 
 
 
-#########################OPTIONS AND HELP #############################################################################################
+######################### OPTIONS AND HELP #############################################################################################
 
 my $version = '1.0.1 (August 12, 2016)';
 
@@ -1232,6 +1242,8 @@ EOF
 #EOF
 }
 
+
+
 # PrintVersion - Print the version of the program
 #
 sub PrintVersion
@@ -1241,6 +1253,8 @@ sub PrintVersion
     $progname =~ s/.*(\\\/)//;
     print "$progname version $version\n";
 }
+
+
 
 # ProcessOptions - Process the options and handle help and version
 #
@@ -1326,8 +1340,8 @@ sub ProcessOptions
 }
 
 
-#######################################Print Output#############################
-################################################################################
+
+####################################### Print Output #############################
 sub printNew
 {
     my ( $newElements, $ret ) = @_; 
@@ -1580,6 +1594,8 @@ sub printRemoved
     }
 }
 
+
+
 sub printNewMetrics 
 {
     my ($newElts) = @_;
@@ -1597,6 +1613,9 @@ sub printNewMetrics
 	}
     }
 }
+
+
+
 sub printRemovedMetrics 
 {
     my ($remElts) = @_;
@@ -1615,12 +1634,15 @@ sub printRemovedMetrics
     }
 }
 
+
+
 sub printHeader
 {
     my ($root, $cmp) = @_;
     print "--- $root\n";
     print "+++ $cmp\n";
 }
+
 
 
 sub printBugSumDif
@@ -1677,6 +1699,8 @@ sub printBugSumDif
 	    
 }
 
+
+
 sub printMetricSumDif
 {
     my ($rootSum, $cmpSum) = @_;   
@@ -1706,7 +1730,7 @@ sub printMetricSumDif
 }
 
 
-####################MAIN SCRIPT##########################################################################################################
+#################### MAIN SCRIPT ##########################################################################################################
 
 #Options
 my $options = ProcessOptions();
@@ -1816,11 +1840,11 @@ if ($options->{summary}) {
 $rootReader->SetCallbackData(\$data);
 $cmpReader->SetCallbackData(\$data);
 
-######store data#######
+###### store data #######
 $rootReader->Parse;
 $cmpReader->Parse;
 
-######find diff########
+###### find diff ########
 if ($data->{ret} > 0){
     diff(dclone $data->{root}, dclone $data->{cmp}, $data->{ret}, $data);
 }
@@ -1828,7 +1852,7 @@ if ($options->{metric}) {
     diffMetric(dclone $data->{rootMetrics}, dclone $data->{cmpMetrics}, $data);
 }
 
-#####print dif#########
+##### print diff #########
 printHeader ($rootFile, $cmpFile);
 if ($data->{ret} > 0){
     printNew ($data->{new}, $data->{ret});
@@ -1846,7 +1870,7 @@ if ($options->{summary}) {
 
 
 
-#######debug############
+####### debug ############
 
 #print ("$data->{ret}\n");
 
