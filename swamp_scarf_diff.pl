@@ -81,9 +81,9 @@ sub diff
 	    }
 	    $countDif = $rootCount - $cmpCount ;
 	    if ( $countDif > 0 ) {
-		$data->{removed}->{$Group} = abs $countDif;		
+		$data->{removed}->{$Group} = abs $countDif;
 	    } elsif ( $countDif < 0 ) {
-		$data->{new}->{$Group} = abs $countDif;		
+		$data->{new}->{$Group} = abs $countDif;
 	    }
 	    delete $cmp->{$Group};
 	}
@@ -106,9 +106,9 @@ sub diff
 		$countDif = $rootCount - $cmpCount ;
 		#$countDif = scalar @{$root->{$Group}->{$Code}} - scalar @{$cmp->{$Group}->{$Code}};
 	        if ( $countDif > 0 ) {
-		   $data->{removed}->{$Group}->{$Code} = abs $countDif;		
+		   $data->{removed}->{$Group}->{$Code} = abs $countDif;
 		} elsif ( $countDif < 0 ) {
-		    $data->{new}->{$Group}->{$Code} = abs $countDif;		
+		    $data->{new}->{$Group}->{$Code} = abs $countDif;
 		}
 		delete $cmp->{$Group}->{$Code};
 	    }
@@ -133,12 +133,10 @@ sub diff
 			$cmpCount = 0;
 		    }
 		    $countDif = $rootCount - $cmpCount ;
-		    #$countDif = scalar @{$root->{$Group}->{$Code}->{$Source}}
-#					    - scalar @{$cmp->{$Group}->{$Code}->{$Source}};
 		    if ( $countDif > 0 ) {
-			$data->{removed}->{$Group}->{$Code}->{$Source} = abs $countDif;		
+			$data->{removed}->{$Group}->{$Code}->{$Source} = abs $countDif;
 		    } elsif ( $countDif < 0 ) {
-			$data->{new}->{$Group}->{$Code}->{$Source} = abs $countDif;		
+			$data->{new}->{$Group}->{$Code}->{$Source} = abs $countDif;
 		    }
 		    delete $cmp->{$Group}->{$Code}->{$Source};
 		}
@@ -155,7 +153,7 @@ sub diff
 	foreach my $Group (keys %{$root}){
 	    foreach my $Code (keys %{$root->{$Group}}){
 		foreach my $Source (keys %{$root->{$Group}->{$Code}}) {
-		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) { 			
+		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) {
 			if (exists $root->{$Group}->{$Code}->{$Source}->{$StartLine}) {
 			    $rootCount = scalar @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}} ;
 			} else {
@@ -167,12 +165,10 @@ sub diff
 			    $cmpCount = 0;
 			}
 			$countDif = $rootCount - $cmpCount ;
-			#$countDif = scalar @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}
-		#			    - scalar @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}};
 			if ( $countDif > 0 ) {
-			    $data->{removed}->{$Group}->{$Code}->{$Source}->{$StartLine} = abs $countDif;		
+			    $data->{removed}->{$Group}->{$Code}->{$Source}->{$StartLine} = abs $countDif;
 			} elsif ( $countDif < 0 ) {
-			    $data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine} = abs $countDif;		
+			    $data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine} = abs $countDif;
 			}
 			delete $cmp->{$Group}->{$Code}->{$Source}->{$StartLine};
 		    }
@@ -193,8 +189,8 @@ sub diff
 	foreach my $Group (keys %{$root}){
 	    foreach my $Code (keys %{$root->{$Group}}){
 		foreach my $Source (keys %{$root->{$Group}->{$Code}}) {
-		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) { 			
-			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
+		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) {
+			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
 			    if (exists $root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}) {
 				$rootCount = scalar @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}} ;
 			    } else {
@@ -206,12 +202,10 @@ sub diff
 				$cmpCount = 0;
 			    }
 			    $countDif = $rootCount - $cmpCount ;
-			    #$countDif = scalar @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}
-				#	    - scalar @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}};
 			    if ( $countDif > 0 ) {
-				$data->{removed}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine} = abs $countDif;		
+				$data->{removed}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine} = abs $countDif;
 			    } elsif ( $countDif < 0 ) {
-				$data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine} = abs $countDif;		
+				$data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine} = abs $countDif;
 			    }
 			    delete $cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine};
 			}
@@ -223,7 +217,7 @@ sub diff
             foreach my $Code (keys %{$cmp->{$Group}}){
                 foreach my $Source (keys %{$cmp->{$Group}->{$Code}}) {
                     foreach my $StartLine (keys %{$cmp->{$Group}->{$Code}->{$Source}}) {
-			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
+			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
 			    $data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine} = scalar @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}};
 			}
 		    }
@@ -235,9 +229,9 @@ sub diff
 	foreach my $Group (keys %{$root}){
 	    foreach my $Code (keys %{$root->{$Group}}){
 		foreach my $Source (keys %{$root->{$Group}->{$Code}}) {
-		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) { 			
-			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
-			    foreach my $StartColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) { 			
+		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) {
+			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
+			    foreach my $StartColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) {
 				if (exists $root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}) {
 				    $rootCount = scalar @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}} ;
 				} else {
@@ -249,12 +243,10 @@ sub diff
 				   $cmpCount = 0;
 				}
 				$countDif = $rootCount - $cmpCount ;
-			#	$countDif = scalar @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}
-			#				- scalar @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}};
 				if ( $countDif > 0 ) {
-				    $data->{removed}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn} = abs $countDif;		
+				    $data->{removed}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn} = abs $countDif;
 				} elsif ( $countDif < 0 ) {
-				    $data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn} = abs $countDif;		
+				    $data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn} = abs $countDif;
 				}
 				delete $cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn};
 			    }
@@ -267,8 +259,8 @@ sub diff
             foreach my $Code (keys %{$cmp->{$Group}}){
                 foreach my $Source (keys %{$cmp->{$Group}->{$Code}}) {
                     foreach my $StartLine (keys %{$cmp->{$Group}->{$Code}->{$Source}}) {
-			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
-			    foreach my $StartColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) { 			
+			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
+			    foreach my $StartColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) {
 				$data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}
 							= scalar @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}};
 			    }
@@ -281,10 +273,10 @@ sub diff
 	foreach my $Group (keys %{$root}){
 	    foreach my $Code (keys %{$root->{$Group}}){
 		foreach my $Source (keys %{$root->{$Group}->{$Code}}) {
-		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) { 			
-			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
-			    foreach my $StartColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) { 			
-				foreach my $EndColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) { 			
+		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) {
+			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
+			    foreach my $StartColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) {
+				foreach my $EndColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) {
 				    if (exists $root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}) {
 					$rootCount = scalar @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}} ;
 				    } else {
@@ -296,12 +288,10 @@ sub diff
 					$cmpCount = 0;
 				    }
 				    $countDif = $rootCount - $cmpCount ;
-				    #$countDif = scalar @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}
-				#			- scalar @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}};
 				    if ( $countDif > 0 ) {
-					$data->{removed}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn} = abs $countDif;		
+					$data->{removed}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn} = abs $countDif;
 				    } elsif ( $countDif < 0 ) {
-					$data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn} = abs $countDif;		
+					$data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn} = abs $countDif;
 				    }
 				    delete $cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn};
 				}
@@ -315,9 +305,9 @@ sub diff
             foreach my $Code (keys %{$cmp->{$Group}}){
                 foreach my $Source (keys %{$cmp->{$Group}->{$Code}}) {
                     foreach my $StartLine (keys %{$cmp->{$Group}->{$Code}->{$Source}}) {
-			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
-			    foreach my $StartColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) { 			
-				foreach my $EndColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) { 			
+			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
+			    foreach my $StartColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) {
+				foreach my $EndColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) {
 				    $data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}
 							= scalar @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}};
 				}
@@ -331,11 +321,11 @@ sub diff
 	foreach my $Group (keys %{$root}){
 	    foreach my $Code (keys %{$root->{$Group}}){
 		foreach my $Source (keys %{$root->{$Group}->{$Code}}) {
-		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) { 			
-			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
-			    foreach my $StartColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) { 			
-				foreach my $EndColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) { 			
-				    foreach my $rootIndex ( @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}) { 			
+		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) {
+			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
+			    foreach my $StartColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) {
+				foreach my $EndColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) {
+				    foreach my $rootIndex ( @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}) {
 					my $match;
 					my $Secondary = @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}[$rootIndex];
 					if ( exists $cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn} ) {
@@ -386,7 +376,7 @@ sub diff
 					} else {
 					    $match = 0;
 					}
-					
+
 
 					if ($match == 0) {
 					    my $newSecondary = $Secondary;
@@ -405,10 +395,10 @@ sub diff
             foreach my $Code (keys %{$cmp->{$Group}}){
                 foreach my $Source (keys %{$cmp->{$Group}->{$Code}}) {
                     foreach my $StartLine (keys %{$cmp->{$Group}->{$Code}->{$Source}}) {
-			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
-			    foreach my $StartColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) { 			
-				foreach my $EndColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) { 			
-				    foreach my $cmpSecondarys ( @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}) { 			
+			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
+			    foreach my $StartColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) {
+				foreach my $EndColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) {
+				    foreach my $cmpSecondarys ( @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}) {
 					$cmpSecondarys->{BugId} = scalar @{$$cmpSecondarys->{BugId}};
 					push @{$data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}, $cmpSecondarys;
 				    }
@@ -423,10 +413,10 @@ sub diff
 	foreach my $Group (keys %{$root}){
 	    foreach my $Code (keys %{$root->{$Group}}){
 		foreach my $Source (keys %{$root->{$Group}->{$Code}}) {
-		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) { 			
-			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
-			    foreach my $StartColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) { 			
-				foreach my $EndColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) { 		
+		    foreach my $StartLine (keys %{$root->{$Group}->{$Code}->{$Source}}) {
+			foreach my $EndLine (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
+			    foreach my $StartColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) {
+				foreach my $EndColumn (keys %{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) {
 				    foreach my $rootIndex (0 .. scalar @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}} - 1) {
 					my $match;
 					my $Secondary = @{$root->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}[$rootIndex];
@@ -500,7 +490,7 @@ sub diff
 					} else {
 					    $match = 0;
 					}
-					
+
 
 					if ($match == 0) {
 					    my $newSecondary = $Secondary;
@@ -519,10 +509,10 @@ sub diff
             foreach my $Code (keys %{$cmp->{$Group}}){
                 foreach my $Source (keys %{$cmp->{$Group}->{$Code}}) {
                     foreach my $StartLine (keys %{$cmp->{$Group}->{$Code}->{$Source}}) {
-			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) { 			
-			    foreach my $StartColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) { 			
-				foreach my $EndColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) { 			
-				    foreach my $cmpSecondarys ( @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}) { 		
+			foreach my $EndLine (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}}) {
+			    foreach my $StartColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}}) {
+				foreach my $EndColumn (keys %{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}}) {
+				    foreach my $cmpSecondarys ( @{$cmp->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}) {
 					$cmpSecondarys->{BugId} = scalar @{$cmpSecondarys->{BugId}};
 					push @{$data->{new}->{$Group}->{$Code}->{$Source}->{$StartLine}->{$EndLine}->{$StartColumn}->{$EndColumn}}, $cmpSecondarys;
 				    }
@@ -646,10 +636,6 @@ sub rootBug
 	    $code = "undefined";
 	}
     } else {
-	#if ( exists $$dataHash->{root}->{$group} ) {
-	#    push @{$$dataHash->{matchesInRoot}->{$$dataHash->{root}->{$group}}}, $bugHash->{BugId};
-	#    return;
-	#}
 	push @{$$dataHash->{root}->{$group}}, $bugHash->{BugId};
 	return;
     }
@@ -662,18 +648,13 @@ sub rootBug
 			$sourceFile = $location->{SourceFile};
 		    } else {
 			$sourceFile = "undefined";
-		    }	
+		    }
 		} else {
-#		    if ( exists $$dataHash->{root}->{$group}->{$code} ) {
-#			push @{$$dataHash->{matchesInRoot}->{$$dataHash->{root}->{$group}->{$code}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{root}->{$group}->{$code} = $bugHash->{BugId};
 		    push @{$$dataHash->{root}->{$group}->{$code}}, $bugHash->{BugId};
 		    return;
 		}
 
-		
+
 		if ( $ret > 2 ) {
 		    if ( exists $location->{StartLine} and $options->{start_line} ) {
 			$startLine = $location->{StartLine};
@@ -681,11 +662,6 @@ sub rootBug
 			$startLine = "undefined";
 		    }
 		} else {
-#		    if ( exists $$dataHash->{root}->{$group}->{$code}->{$sourceFile} ) {
-#			push @{$$dataHash->{matchesInRoot}->{$$dataHash->{root}->{$group}->{$code}->{$sourceFile}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{root}->{$group}->{$code}->{$sourceFile} = $bugHash->{BugId};
 		    push @{$$dataHash->{root}->{$group}->{$code}->{$sourceFile}}, $bugHash->{BugId};
 		    return;
 		}
@@ -697,11 +673,6 @@ sub rootBug
 			$endLine = "undefined";
 		    }
 		} else {
-#		    if ( exists $$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine} ) {
-#			push @{$$dataHash->{matchesInRoot}->{$$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine} = $bugHash->{BugId};
 		    push @{$$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}}, $bugHash->{BugId};
 		    return;
 		}
@@ -713,11 +684,6 @@ sub rootBug
 			$startCol = "undefined";
 		    }
 		} else {
-#		    if ( exists $$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine} ) {
-#			push @{$$dataHash->{matchesInRoot}->{$$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine} = $bugHash->{BugId};
 		    push @{$$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}}, $bugHash->{BugId};
 		    return;
 		}
@@ -729,18 +695,13 @@ sub rootBug
 			$endCol = "undefined";
 		    }
 		} else {
-#		    if ( exists $$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol} ) {
-#			push @{$$dataHash->{matchesInRoot}->{$$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol} = $bugHash->{BugId};
 		    push @{$$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol}}, $bugHash->{BugId};
 		    return;
 		}
 	    }
 	}
     }
-	
+
 
     if ( $ret > 6 ) {
 	if ( not exists $$dataHash->{root}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol}->{$endCol} ) {
@@ -783,7 +744,6 @@ sub rootBug
 		        $match = 0;
 		    }
 		    if ( $match ) {
-#			push @{$$dataHash->{matchesInRoot}->{$secondary->{BugId}}}, $bugHash->{BugId};
 			push @{$secondary->{BugId}}, $bugHash->{BugId};
 			return;
 		    }
@@ -830,7 +790,7 @@ sub rootBug
 			} elsif (@{$secondaryHash->{Methods}}) {
 			    $match = 0;
 			}
-			
+
 			if ( $match ) {
 			    push @{$secondary->{BugId}}, $bugHash->{BugId};
 			    return;
@@ -886,10 +846,6 @@ sub cmpBug
 	    $code = "undefined";
 	}
     } else {
-	#if ( exists $$dataHash->{cmp}->{$group} ) {
-	#    push @{$$dataHash->{matchesIncmp}->{$$dataHash->{cmp}->{$group}}}, $bugHash->{BugId};
-	#    return;
-	#}
 	push @{$$dataHash->{cmp}->{$group}}, $bugHash->{BugId};
 	return;
     }
@@ -902,18 +858,13 @@ sub cmpBug
 			$sourceFile = $location->{SourceFile};
 		    } else {
 			$sourceFile = "undefined";
-		    }	
+		    }
 		} else {
-#		    if ( exists $$dataHash->{cmp}->{$group}->{$code} ) {
-#			push @{$$dataHash->{matchesIncmp}->{$$dataHash->{cmp}->{$group}->{$code}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{cmp}->{$group}->{$code} = $bugHash->{BugId};
 		    push @{$$dataHash->{cmp}->{$group}->{$code}}, $bugHash->{BugId};
 		    return;
 		}
 
-		
+
 		if ( $ret > 2 ) {
 		    if ( exists $location->{StartLine} and $options->{start_line} ) {
 			$startLine = $location->{StartLine};
@@ -921,11 +872,6 @@ sub cmpBug
 			$startLine = "undefined";
 		    }
 		} else {
-#		    if ( exists $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile} ) {
-#			push @{$$dataHash->{matchesIncmp}->{$$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile} = $bugHash->{BugId};
 		    push @{$$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}}, $bugHash->{BugId};
 		    return;
 		}
@@ -937,11 +883,6 @@ sub cmpBug
 			$endLine = "undefined";
 		    }
 		} else {
-#		    if ( exists $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine} ) {
-#			push @{$$dataHash->{matchesIncmp}->{$$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine} = $bugHash->{BugId};
 		    push @{$$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}}, $bugHash->{BugId};
 		    return;
 		}
@@ -953,11 +894,6 @@ sub cmpBug
 			$startCol = "undefined";
 		    }
 		} else {
-#		    if ( exists $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine} ) {
-#			push @{$$dataHash->{matchesIncmp}->{$$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine} = $bugHash->{BugId};
 		    push @{$$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}}, $bugHash->{BugId};
 		    return;
 		}
@@ -969,25 +905,19 @@ sub cmpBug
 			$endCol = "undefined";
 		    }
 		} else {
-#		    if ( exists $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol} ) {
-#			push @{$$dataHash->{matchesIncmp}->{$$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol}}}, $bugHash->{BugId};
-#			return;
-#		    }
-#		    $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol} = $bugHash->{BugId};
 		    push @{$$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol}}, $bugHash->{BugId};
 		    return;
 		}
 	    }
 	}
     }
-	
+
 
     if ( $ret > 6 ) {
 	if ( not exists $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol}->{$endCol} ) {
 	    $$dataHash->{cmp}->{$group}->{$code}->{$sourceFile}->{$startLine}->{$endLine}->{$startCol}->{$endCol} = [];
 	}
 	my $secondaryHash = {};
-	#$secondaryHash->{BugId} = $bugHash->{BugId};
 	$secondaryHash->{BugId} = [$bugHash->{BugId}];
 
 	if ( defined $bugHash->{CweIds} and $options->{cwe}) {
@@ -1025,7 +955,6 @@ sub cmpBug
 		        $match = 0;
 		    }
 		    if ( $match ) {
-#			push @{$$dataHash->{matchesIncmp}->{$secondary->{BugId}}}, $bugHash->{BugId};
 			push @{$secondary->{BugId}}, $bugHash->{BugId};
 			return;
 		    }
@@ -1072,7 +1001,7 @@ sub cmpBug
 			} elsif (@{$secondaryHash->{Methods}}) {
 			    $match = 0;
 			}
-			
+
 			if ( $match ) {
 			    push @{$secondary->{BugId}}, $bugHash->{BugId};
 			    return;
@@ -1233,7 +1162,7 @@ options:
     --end_column         -ec   enable/disable end_column comparison
     --methods            -m    enable/disable  comparison
     --cweid              -cwe  enable/disable bug_code comparison
-    --metric                   enable/disable metric diff functionality	
+    --metric                   enable/disable metric diff functionality
     --summary            -s    enable/disable only reading summary for diff information
     --json               -j    enable JSON parsing instead of XML
 EOF
@@ -1350,13 +1279,13 @@ sub printNew
     if ( $ret == 0 ) {
 	for my $group ( keys %{$newElements} ) {
 	    $count = $newElements->{$group};
-	    print "+ $count BugInstances categorized by BugGroup: $group\n";	
+	    print "+ $count BugInstances categorized by BugGroup: $group\n";
 	}
     } elsif ( $ret == 1 ) {
 	for my $group ( keys %{$newElements} ) {
 	    for my $code ( keys %{$newElements->{$group}} ) {
 		$count = $newElements->{$group}->{$code};
-		print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code\n";	
+		print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code\n";
 	    }
 	}
     } elsif ( $ret == 2 ) {
@@ -1364,7 +1293,7 @@ sub printNew
 	    for my $code ( keys %{$newElements->{$group}} ) {
 		for my $source ( keys %{$newElements->{$group}->{$code}} ) {
 		    $count = $newElements->{$group}->{$code}->{$source};
-		    print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source\n";	
+		    print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source\n";
 		}
 	    }
 	}
@@ -1374,7 +1303,7 @@ sub printNew
 		for my $source ( keys %{$newElements->{$group}->{$code}} ) {
 		    for my $startLine ( keys %{$newElements->{$group}->{$code}->{$source}} ) {
 			$count = $newElements->{$group}->{$code}->{$source}->{$startLine};
-			print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine\n";	
+			print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine\n";
 		    }
 		}
 	    }
@@ -1386,7 +1315,7 @@ sub printNew
 		    for my $startLine ( keys %{$newElements->{$group}->{$code}->{$source}} ) {
 			for my $endLine ( keys %{$newElements->{$group}->{$code}->{$source}->{$startLine}} ) {
 			    $count = $newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine};
-			    print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine\n";	
+			    print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine\n";
 			}
 		    }
 		}
@@ -1400,7 +1329,7 @@ sub printNew
 			for my $endLine ( keys %{$newElements->{$group}->{$code}->{$source}->{$startLine}} ) {
 			    for my $startCol ( keys %{$newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}} ) {
 				$count = $newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol};
-				print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol\n";	
+				print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol\n";
 			    }
 			}
 		    }
@@ -1416,7 +1345,7 @@ sub printNew
 			    for my $startCol ( keys %{$newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}} ) {
 				for my $endCol ( keys %{$newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}} ) {
 				    $count = $newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}->{$endCol};
-				    print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol\n";	
+				    print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol\n";
 				}
 			    }
 			}
@@ -1434,7 +1363,7 @@ sub printNew
 				for my $endCol ( keys %{$newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}} ) {
 				    for my $secondary (@{$newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}->{$endCol}}) {
 					$count = $secondary->{BugId};
-					print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol, ",	
+					print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol, ",
 						"CweIds: @{$secondary->{CweIds}}\n";
 				    }
 				}
@@ -1454,7 +1383,7 @@ sub printNew
 				for my $endCol ( keys %{$newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}} ) {
 				    for my $secondary (@{$newElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}->{$endCol}}) {
 					$count = $secondary->{BugId};
-					print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol, ",	
+					print "+ $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol, ",
 						"CweIds: @{$secondary->{CweIds}}, Methods: @{$secondary->{Methods}}\n";
 				    }
 				}
@@ -1477,13 +1406,13 @@ sub printRemoved
     if ( $ret == 0 ) {
 	for my $group ( keys %{$remElements} ) {
 	    $count = $remElements->{$group};
-	    print "- $count BugInstances categorized by BugGroup: $group\n";	
+	    print "- $count BugInstances categorized by BugGroup: $group\n";
 	}
     } elsif ( $ret == 1 ) {
 	for my $group ( keys %{$remElements} ) {
 	    for my $code ( keys %{$remElements->{$group}} ) {
 		$count = $remElements->{$group}->{$code};
-		print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code\n";	
+		print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code\n";
 	    }
 	}
     } elsif ( $ret == 2 ) {
@@ -1491,7 +1420,7 @@ sub printRemoved
 	    for my $code ( keys %{$remElements->{$group}} ) {
 		for my $source ( keys %{$remElements->{$group}->{$code}} ) {
 		    $count = $remElements->{$group}->{$code}->{$source};
-		    print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source\n";	
+		    print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source\n";
 		}
 	    }
 	}
@@ -1501,7 +1430,7 @@ sub printRemoved
 		for my $source ( keys %{$remElements->{$group}->{$code}} ) {
 		    for my $startLine ( keys %{$remElements->{$group}->{$code}->{$source}} ) {
 			$count = $remElements->{$group}->{$code}->{$source}->{$startLine};
-			print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine\n";	
+			print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine\n";
 		    }
 		}
 	    }
@@ -1513,7 +1442,7 @@ sub printRemoved
 		    for my $startLine ( keys %{$remElements->{$group}->{$code}->{$source}} ) {
 			for my $endLine ( keys %{$remElements->{$group}->{$code}->{$source}->{$startLine}} ) {
 			    $count = $remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine};
-			    print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine\n";	
+			    print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine\n";
 			}
 		    }
 		}
@@ -1527,7 +1456,7 @@ sub printRemoved
 			for my $endLine ( keys %{$remElements->{$group}->{$code}->{$source}->{$startLine}} ) {
 			    for my $startCol ( keys %{$remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}} ) {
 				$count = $remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol};
-				print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol\n";	
+				print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol\n";
 			    }
 			}
 		    }
@@ -1543,7 +1472,7 @@ sub printRemoved
 			    for my $startCol ( keys %{$remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}} ) {
 				for my $endCol ( keys %{$remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}} ) {
 				    $count = $remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}->{$endCol};
-				    print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol\n";	
+				    print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol\n";
 				}
 			    }
 			}
@@ -1561,7 +1490,7 @@ sub printRemoved
 				for my $endCol ( keys %{$remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}} ) {
 				    for my $secondary (@{$remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}->{$endCol}}) {
 					$count = $secondary->{BugId};
-					print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol, ",	
+					print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol, ",
 						"CweIds: @{$secondary->{CweIds}}\n";
 				    }
 				}
@@ -1581,7 +1510,7 @@ sub printRemoved
 				for my $endCol ( keys %{$remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}} ) {
 				    for my $secondary (@{$remElements->{$group}->{$code}->{$source}->{$startLine}->{$endLine}->{$startCol}->{$endCol}}) {
 					$count = $secondary->{BugId};
-					print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol, ",	
+					print "- $count BugInstances categorized by BugGroup: $group, BugCode: $code, SourceFile: $source, StartLine: $startLine, EndLine: $endLine, StartColumn: $startCol, EndColumn: $endCol, ",
 						"CweIds: @{$secondary->{CweIds}}, Methods: @{$secondary->{Methods}}\n";
 				    }
 				}
@@ -1659,7 +1588,7 @@ sub printBugSumDif
 			if ( $cmpCode eq $rootCode ) {
 			    $foundCode = 1;
 			    my $bytes = $rootSum->{$rootGroup}->{$rootCode}->{bytes} - $cmpSum->{$rootGroup}->{$rootCode}->{bytes};
-			    my $count = $rootSum->{$rootGroup}->{$rootCode}->{count} - $cmpSum->{$rootGroup}->{$rootCode}->{count};	
+			    my $count = $rootSum->{$rootGroup}->{$rootCode}->{count} - $cmpSum->{$rootGroup}->{$rootCode}->{count};
 			    if ( $count < 0 ) {
 				my $abscount = abs $count;
 				my $absbytes = abs $bytes;
@@ -1676,7 +1605,7 @@ sub printBugSumDif
 			}
 		    }
 		    if ( $foundCode == 0 ) {
-			print "- $rootSum->{$rootGroup}->{$rootCode}->{count} BugInstances categorized by BugGroup: $rootGroup and BugCode: $rootCode accounted for $rootSum->{$rootGroup}->{$rootCode}->{bytes} removed bytes\n";	
+			print "- $rootSum->{$rootGroup}->{$rootCode}->{count} BugInstances categorized by BugGroup: $rootGroup and BugCode: $rootCode accounted for $rootSum->{$rootGroup}->{$rootCode}->{bytes} removed bytes\n";
 		    }
 		}
 		last;
@@ -1686,9 +1615,9 @@ sub printBugSumDif
 	}
 	if ( $foundGroup == 0 ) {
 	    foreach my $rootCode ( keys %{$rootSum->{$rootGroup}} ) {
-		print "- $rootSum->{$rootGroup}->{$rootCode}->{count} BugInstances categorized by BugGroup: $rootGroup and BugCode: $rootCode accounted for $rootSum->{$rootGroup}->{$rootCode}->{bytes} removed bytes\n";	
+		print "- $rootSum->{$rootGroup}->{$rootCode}->{count} BugInstances categorized by BugGroup: $rootGroup and BugCode: $rootCode accounted for $rootSum->{$rootGroup}->{$rootCode}->{bytes} removed bytes\n";
 	    }
-	}	
+	}
     }
     foreach my $cmpGroup ( keys %{$cmpSum} ) {
 	foreach my $cmpCode ( keys %{$cmpSum->{$cmpGroup}} ) {
@@ -1696,7 +1625,6 @@ sub printBugSumDif
 	}
     }
     return;
-
 }
 
 
