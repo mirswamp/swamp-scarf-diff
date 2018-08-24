@@ -1295,7 +1295,7 @@ sub ProcessOptions
 		"summary|Summary|sum|s!",
 		"metric|metrics|metr!",
 		"json|JSON|j!",
-		"full_bug|full_bug|full|bug|fb"
+		"full_bug|full-bug|full|bug|fb"
                 );
 
     # Configure file options, will be read in this order
