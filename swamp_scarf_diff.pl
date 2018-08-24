@@ -1253,7 +1253,16 @@ sub ProcessOptions
         $options{$k} = $v;
         $optSet{$k} = 1;
     }
+    
+    if ($options{json})  {
+	print STDERR "ERROR:  --json is not supported.\n";
+	$ok = 0;
+    }
 
+    if (@ARGV != 2 && !$options{help} && !$options{version})  {
+	print STDERR "ERROR:  Exactly two files must be specified to compare.\n";
+	$ok = 0;
+    }
 
     if (!$ok || $options{help})  {
         PrintUsage(\%optionDefaults);
@@ -1747,6 +1756,7 @@ if (not $options->{json}) {
     $rootReader = new ScarfXmlReader($rootFile);
     $cmpReader =  new ScarfXmlReader($cmpFile);
 } else {
+    die "json reader not supported.";
 #    $rootReader = new ScarfJSONReader($rootFile);
 #    $cmpReader =  new ScarfJSONReader($cmpFile);
 }
