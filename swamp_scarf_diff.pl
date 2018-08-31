@@ -1,12 +1,14 @@
 #!/usr/bin/perl -w
 
 ###################################### imports #######################################
+use strict;
+use FindBin;
+use lib "$FindBin::Bin";
 use Getopt::Long;
 use ScarfXmlReader;
 #use ScarfJSONReader;
 use Storable 'dclone';
 use Data::Dumper;
-use strict;
 
 
 
